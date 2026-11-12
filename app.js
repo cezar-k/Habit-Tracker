@@ -5,6 +5,7 @@ const input = document.getElementById('habit-name');
 const list = document.getElementById('habit-list');
 const emptyMessage = document.getElementById('empty-message');
 const themeToggle = document.getElementById('theme-toggle');
+const clearCompletedButton = document.getElementById('clear-completed');
 
 // Local date (not UTC) so "today" matches the user's calendar, not Greenwich's.
 function todayString() {
@@ -39,6 +40,11 @@ function render() {
 
   list.replaceChildren();
   emptyMessage.hidden = habits.length > 0;
+
+  // Disable rather than hide, so the button stays findable when nothing is ticked yet.
+  const doneCount = habits.filter((habit) => habit.doneDate === today).length;
+  clearCompletedButton.disabled = doneCount === 0;
+  clearCompletedButton.textContent = `Clear completed (${doneCount})`;
 
   habits.forEach((habit) => {
     const isDone = habit.doneDate === today;
@@ -94,6 +100,15 @@ function removeHabit(id) {
   render();
 }
 
+// Uses the same "done today" test as render(), so only the habits shown as ticked are removed.
+function clearCompleted() {
+  const data = loadData();
+  const today = todayString();
+  data.habits = data.habits.filter((h) => h.doneDate !== today);
+  saveData(data);
+  render();
+}
+
 // The theme lives in the same habitTracker object so localStorage keeps a single key.
 function applyTheme() {
   const isDark = loadData().theme === 'dark';
@@ -110,6 +125,7 @@ function toggleTheme() {
 }
 
 themeToggle.addEventListener('click', toggleTheme);
+clearCompletedButton.addEventListener('click', clearCompleted);
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
