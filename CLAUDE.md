@@ -17,6 +17,7 @@ There is nothing to install or compile. To reset the app, clear the site's `loca
 ## Folder layout
 ```
 habit-tracker-app/
+├── .gitignore
 ├── CLAUDE.md
 ├── index.html
 ├── styles.css
@@ -30,7 +31,7 @@ habit-tracker-app/
 - Write short comments that explain *why* something is done, not *what* the code does.
 
 ## Rules you can check by looking
-- The project folder contains only `CLAUDE.md`, `index.html`, `styles.css`, and `app.js` (plus an optional `README.md`). No `package.json`, no `node_modules/`, no `dist/`.
+- The project folder contains only `CLAUDE.md`, `index.html`, `styles.css`, and `app.js` (plus `.gitignore` and an optional `README.md`). No `package.json`, no `node_modules/`, no `dist/`.
 - `index.html` opens and works when double-clicked, with no server running.
 - After adding a habit and reloading the page, the habit is still there.
 - In dev tools → Application → Local Storage, there is exactly one key: `habitTracker`.

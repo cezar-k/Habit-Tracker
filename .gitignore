@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.swp
+*~
+
+# Logs and local environment files
+*.log
+.env
+.env.*
+
+# Guard against tooling the project rules forbid
+node_modules/
+dist/
