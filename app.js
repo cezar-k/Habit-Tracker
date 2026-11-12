@@ -4,6 +4,7 @@ const form = document.getElementById('add-form');
 const input = document.getElementById('habit-name');
 const list = document.getElementById('habit-list');
 const emptyMessage = document.getElementById('empty-message');
+const themeToggle = document.getElementById('theme-toggle');
 
 // Local date (not UTC) so "today" matches the user's calendar, not Greenwich's.
 function todayString() {
@@ -93,6 +94,23 @@ function removeHabit(id) {
   render();
 }
 
+// The theme lives in the same habitTracker object so localStorage keeps a single key.
+function applyTheme() {
+  const isDark = loadData().theme === 'dark';
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  themeToggle.setAttribute('aria-pressed', String(isDark));
+  themeToggle.textContent = isDark ? 'Light mode' : 'Dark mode';
+}
+
+function toggleTheme() {
+  const data = loadData();
+  data.theme = data.theme === 'dark' ? 'light' : 'dark';
+  saveData(data);
+  applyTheme();
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+
 form.addEventListener('submit', (event) => {
   event.preventDefault();
   const name = input.value.trim();
@@ -102,4 +120,5 @@ form.addEventListener('submit', (event) => {
   input.focus();
 });
 
+applyTheme();
 render();
