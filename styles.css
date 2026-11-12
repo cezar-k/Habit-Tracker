@@ -21,16 +21,15 @@
 }
 
 :root[data-theme="dark"] {
-  --color-background: #0f1f17;
-  --color-text: #ecf5ef;
-  --color-muted: #9cb8a6;
-  --color-done: #6b8a77;
-  --color-surface: #183026;
-  --color-border: #264536;
-  --color-input-border: #335a46;
-  /* Darker green than usual so white button text stays readable. */
-  --color-accent: #15803d;
-  --color-accent-hover: #166534;
+  --color-background: #1c1917;
+  --color-text: #f5f5f4;
+  --color-muted: #a8a29e;
+  --color-done: #78716c;
+  --color-surface: #292524;
+  --color-border: #44403c;
+  --color-input-border: #57534e;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
   --color-accent-text: #fff;
   --color-danger: #f87171;
   --color-danger-hover-background: #3f1d1d;
